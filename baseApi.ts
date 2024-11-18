@@ -18,8 +18,10 @@ const customFetch = async (url: string, options: RequestInit = {}): Promise<any>
     const jsonResponse = await response.json();
     return jsonResponse;
 };
-
-export const post = async (url: string, body: any, options: RequestInit = {}): Promise<any> => {
+export const get = async (url: string, options: RequestInit = {}): Promise<any> => {// this is the get method
+    return customFetch(url, { ...options, method: 'GET' });
+};
+export const post = async (url: string, body: any, options: RequestInit = {}): Promise<any> => {// this is the post method
     const app_token = getAppToken();
     const userId = await getUserId();
 
