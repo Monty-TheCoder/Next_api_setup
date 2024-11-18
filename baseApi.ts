@@ -21,6 +21,17 @@ const customFetch = async (url: string, options: RequestInit = {}): Promise<any>
 export const get = async (url: string, options: RequestInit = {}): Promise<any> => {// this is the get method
     return customFetch(url, { ...options, method: 'GET' });
 };
+export const del = async (url: string, body: any, options: RequestInit = {}): Promise<any> => {
+    return customFetch(url, {
+        ...options,
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            ...options.headers,
+            'Content-Type': 'application/json',
+        }
+    });
+};
 export const post = async (url: string, body: any, options: RequestInit = {}): Promise<any> => {// this is the post method
     const app_token = getAppToken();
     const userId = await getUserId();
